@@ -14,6 +14,9 @@ public interface PoemaService {
 	  public void insert(Poema p);
 	  public void insertAll(Poema[] p);
 	  
+	  public void update(Poema p);
+	  public void remove(Poema p);
+	  
 	public List<Poema> getAll();
 	public List<Poema> findByTitle(String title);
 	public List<Poema> findByAuthor(String author);

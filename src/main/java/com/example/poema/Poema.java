@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Document
@@ -15,11 +16,16 @@ public class Poema {
 	private String title;
 	private String text;
 	private Date date;
+	//private String date;
 	private String author;
 	private String img;
 	
+
+//tmc	@JsonCreator
+	public Poema(){} //default constructor 'cos Jackson creates the naked object and after that it fills the fields
 	
-	public Poema(String title, String text, Date date, String author, String img) {
+	
+	public Poema(String title, String text, Date/* String*/ date, String author, String img) {
 		super();
 		this.title = title;
 		this.text = text;
@@ -51,9 +57,15 @@ public class Poema {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getAuthor() {
+	String getAuthor() {
 		return author;
 	}
+/*	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}*/
 	public void setAuthor(String author) {
 		this.author = author;
 	}

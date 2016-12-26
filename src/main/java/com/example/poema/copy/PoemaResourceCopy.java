@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path="/api/v1/poema", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(path="/api/v1/poema" /*OLD*/, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class PoemaResourceCopy {
 	@Autowired
 	private PoemaServiceCopy poemaService;
