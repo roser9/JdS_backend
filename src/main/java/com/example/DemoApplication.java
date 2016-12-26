@@ -12,6 +12,8 @@ import com.example.author.Author;
 import com.example.author.AuthorRepository;
 import com.example.book.Book;
 import com.example.book.BookDAO;
+import com.example.poema.Poema;
+import com.example.poema.PoemaRepository;
 import com.example.poema.copy.PoemaCopy;
 import com.example.poema.copy.PoemaRepositoryCopy;
 
@@ -27,7 +29,10 @@ public class DemoApplication implements CommandLineRunner{
 	//show databases ---> test
 	//show collecions, aquí hi ha el Book, authors, poema  @Document (collection = "authors")
 	@Autowired
-	private PoemaRepositoryCopy repository;
+	private PoemaRepository repository;
+	//private PoemaRepositoryCopy repository;
+	
+	
 	// TODO i author repository??
 	@Autowired 
 	private AuthorRepository repositoryAuthor;
@@ -48,23 +53,26 @@ public class DemoApplication implements CommandLineRunner{
 		repository.deleteAll();
 		repositoryAuthor.deleteAll();
 
-		PoemaCopy entity = new PoemaCopy("poema insertat", "el text del poema", new Date(), "autor", "imatge");
+		Poema entity = new Poema("poema insertat", "el text del poema", new Date(), "autor", "imatge");
 		repository.insert(entity);
 		Author entitya = new Author("autorname", "autorsurname", "autornick", "autordescription");
 		repositoryAuthor.insert(entitya);
 		
 		
 		// save a couple of customers
-		repository.save(new PoemaCopy("Títol1", "Text\n1", new Date(), "Autor1", "path img1"));
-		repository.save(new PoemaCopy("UNA ROSA VORA MAR", "Darrera les ones amb flaire marina\nresseguim el record d’una vesprada rogenca\n"
+		repository.save(new Poema("Títol1", "Text\n1", new Date(), "Autor1", "path img1"));
+		repository.save(new Poema/*Copy*/("UNA ROSA VORA MAR", "Darrera les ones amb flaire marina\nresseguim el record d’una vesprada rogenca\n"
 				+ "quan atrapem amb coratge les ombres\namb les mans plenes de colors i mirades.\n"
 				+ "Tot el que tenim per dir-nos és fa silenci\nquan t’entrego vora mar una rosa.",new Date(),  
 				"PeP Panosa – Jardiner de Sentiments", "path img1"));
+		repository.save(new Poema/*Copy*/("161226 A LES MEVES FILLES", "M’agradaria deixar-vos\nen cada estel compartit\nun poc de mi,\n\n"
+				+ "amb records clars\ncom la brisa que pentina l'Empordà\nun dia primavera.\n\nUn pensament\ndolç i lleu per cada tarda\nfort i pur dins els somnis.",
+				new Date(), "PeP Panosa – Jardiner de Sentiments", "path img2"));
 
 		// fetch all customers
 		System.out.println("\nCustomers found with findAll():");
 		System.out.println("-------------------------------");
-		for (PoemaCopy poema : repository.findAll()) {
+		for (Poema/*Copy*/ poema : repository.findAll()) {
 			System.out.println(poema);
 		}
 		System.out.println();
@@ -76,7 +84,7 @@ public class DemoApplication implements CommandLineRunner{
 
 		System.out.println("\nCustomers found with findAll():");
 		System.out.println("--------------------------------");
-		for (PoemaCopy poema : repository.findAll()) {
+		for (Poema/*Copy*/ poema : repository.findAll()) {
 			System.out.println(poema);
 		}
 		
